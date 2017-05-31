@@ -11,6 +11,7 @@ class App extends React.Component {
     super();
 
     this.addFish = this.addFish.bind(this);
+    this.updateFish = this.updateFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
     // getinitialState
@@ -61,6 +62,15 @@ base.removeBinding(this.ref);
     this.setState({ fishes });
   }
 
+  updateFish(key, updatedfish)
+  {
+  	 const fishes = {...this.state.fishes};
+  	 fishes[key]= updatedfish;
+  	 this.setState({fishes});
+
+
+  }
+
   loadSamples() {
 
   	this.setState({
@@ -95,7 +105,7 @@ base.removeBinding(this.ref);
           </ul>
         </div>
         <Order fishes={this.state.fishes} order={this.state.order} params={this.props.params} />
-        <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
+        <Inventory addFish={this.addFish} updateFish={this.updateFish} loadSamples={this.loadSamples} fishes={this.state.fishes} />
       </div>
     )
   }
